@@ -5,6 +5,20 @@ export type NewUser = {
 };
 
 export type ExistingUser = {
-  email: string;
+  document_number: string;
   password: string;
+};
+
+export type CurrentUser = {
+  first_name: string;
+  last_name: string;
+  dob: string;
+  document_type: string;
+  document_number: string;
+  email: string;
+  role_id: number;
+  role_name: string;
+  campus_id: number;
+  campus_name: string;
+  created_by: number;
 };

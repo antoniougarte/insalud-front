@@ -1,11 +1,11 @@
 import { onBeforeMount, ref } from 'vue'
 import { defineStore } from 'pinia'
-import type { NewUser, ExistingUser } from '@/types/userType'
+import type { NewUser, ExistingUser, CurrentUser } from '@/types/userType'
 import { getCurrentUserApi, loginApi, createApi } from '@/api/apiLogin'
 import { showToast } from '@/helpers/notifications'
 
 export const useLoginStore = defineStore('login', () => {
-  const name = ref<string>('');
+  const currentUser =  ref<CurrentUser | null>(null);
   const isLoading = ref<boolean>(false);
 
   const handleApiError = (error: any, iconToast:string, message:string): void => {
@@ -52,8 +52,8 @@ export const useLoginStore = defineStore('login', () => {
         return null;
       }
       const response = await getCurrentUserApi(token);
-      name.value = response.name;
-      // console.log(response);
+      currentUser.value = response[0];
+      console.log(currentUser)
     } catch (error) {
       console.error(error);
       isLoading.value = false;
@@ -71,5 +71,5 @@ export const useLoginStore = defineStore('login', () => {
     }
   });
 
-  return { name, isLoading, create, login, getCurrentUser, logout }
+  return { currentUser, isLoading, create, login, getCurrentUser, logout }
 })
