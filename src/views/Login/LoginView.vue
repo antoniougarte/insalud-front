@@ -18,7 +18,7 @@ const login = async() => {
   });
   if (localStorage.getItem("tokenAuth")){
     showToast(3000, "success", "Signed in successfully");
-  router.push('/home'); // Redirige a la página de inicio
+  router.push('/dashboard'); // Redirige a la página de inicio
 }
 };
 </script>
@@ -28,7 +28,7 @@ const login = async() => {
     <SpinnerComponent/>
   </div>
   <section class="bg-insalud">
-    <div class="dark:bg-gray-900 bg-gray-900 bg-opacity-40">
+    <div>
       <div class="h-screen flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div class="flex justify-center pt-8">

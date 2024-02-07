@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, type NavigationGuardNext, type RouteLocationNormalized, type RouteLocationNormalizedLoaded } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import AboutView from '../views/AboutView.vue'
-import LoginView from '@/views/LoginView.vue'
+import HomeView from '../views/Dashboard/DashboardView.vue'
+import UsersView from '../views/Dashboard/Sections/Users/UsersView.vue'
+import LoginView from '@/views/Login/LoginView.vue'
 import BlogView from '../views/BlogView.vue'
 import PostView from '../views/PostView.vue'
 import RegisterView from '@/views/RegisterView.vue'
@@ -22,16 +22,16 @@ const requireGuest = (to: RouteLocationNormalized, from: RouteLocationNormalized
   if (!isAuthenticated()) {
     next();
   } else {
-    next('/home');
+    next('/dashboard');
   }
 };
 
 const routes = [
-  { path: '/', redirect: isAuthenticated() ? '/home' : '/login' },
-  { path: '/home', name: 'home', component: HomeView, beforeEnter: requireAuth },
-  { path: '/about', name: 'about', component: AboutView, beforeEnter: requireAuth },
+  { path: '/', redirect: isAuthenticated() ? '/dashboard' : '/login' },
   { path: '/login', name: 'login', component: LoginView, beforeEnter: requireGuest },
   { path: '/register', name: 'register', component: RegisterView, beforeEnter: requireGuest },
+  { path: '/dashboard', name: 'dashboard', component: HomeView, beforeEnter: requireAuth },
+  { path: '/users', name: 'users', component: UsersView, beforeEnter: requireAuth },
   { path: '/blog', name: 'blog', component: BlogView, beforeEnter: requireAuth },
   { path: '/blog/:id', name: 'post', component: PostView, beforeEnter: requireAuth },
 ];
