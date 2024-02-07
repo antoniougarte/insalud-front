@@ -34,7 +34,13 @@ onMounted(async () => {
    :toggleAside="isAsideOpen"
 />
 
-
-<ProductsView />
+<div class="content p-4 sm:ml-64">
+   <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+      <template v-if="$route.path === '/dashboard' || $route.path === '/dashboard/'">
+         Selecciona un modulo para empezar
+      </template>
+      <router-view></router-view>
+   </div>
+</div>
 
 </template>
